@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SupersCrypt — Zero-Knowledge Code &amp; Data on the Clouds You Already Use</title>
+  <meta name="description"
+    content="SupersCrypt keeps your source code and regulated data zero-knowledge on GitHub, GitLab and Bitbucket. A Manifest V3 browser extension renders ciphertext as live cleartext, client-side only — without breaking pull-request reviews." />
+  <meta name="color-scheme" content="dark" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SupersCrypt — Keep Your Code Zero-Knowledge. Keep Using GitHub." />
+  <meta property="og:description"
+    content="Encrypt code and compliance secrets before they leave your machine. Collaborate seamlessly on public remotes with client-side visual injection." />
+
+  <!-- Inline SVG shield favicon — no external requests -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2358a6ff' d='M12 1 3 5v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V5l-9-4Z'/%3E%3Cpath fill='%230d1117' d='m10.6 15.4-3-3 1.4-1.4 1.6 1.6 3.9-3.9L16 6.2l-5.4 9.2Z'/%3E%3C/svg%3E" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#hero">Skip to content</a>
+
+  <!-- ============================ HEADER ============================ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#hero" aria-label="SupersCrypt home">
+        <svg class="logo-mark" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+          <path fill="var(--accent-blue)" d="M12 1 3 5v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V5l-9-4Z" />
+          <path fill="var(--bg-dark)" d="m10.6 15.4-3-3 1.4-1.4 1.6 1.6 3.9-3.9L16 6.2l-5.4 9.2Z" />
+        </svg>
+        <span>Supers<span class="logo-accent">Crypt</span></span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+        <a href="#how">Product</a>
+        <a href="#compare">Compare</a>
+        <a href="#vision">Vision</a>
+        <a href="#enterprise">Enterprise</a>
+        <a href="#faq">CISO&nbsp;FAQ</a>
+        <a class="btn btn-primary btn-sm" href="#pilot">Request&nbsp;Pilot</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================ HERO ============================ -->
+    <section class="hero" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Zero-Knowledge presentation layer · Open-core</span>
+          <h1>Keep Your Code<br />Zero-Knowledge.<br /><span class="grad">Keep Using GitHub.</span></h1>
+          <p class="hero-sub">
+            Encrypt your private codebase, intellectual property and compliance secrets
+            <em>before</em> they ever leave your machine. Your cloud stores nothing but scrambled
+            ciphertext — authorized teammates see beautiful, readable code injected live in the
+            browser. Same pull requests. Same diffs. Zero exposure.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#pilot">Request Enterprise Pilot</a>
+            <a class="btn btn-ghost" href="#how">See how it works ↓</a>
+          </div>
+          <ul class="hero-badges" aria-label="Compliance alignment">
+            <li>🛡️ SOC 2</li>
+            <li>🏥 HIPAA</li>
+            <li>📘 ISO 27001</li>
+            <li>🔑 SSO / Okta · Azure AD</li>
+          </ul>
+        </div>
+
+        <!-- Animated visual-injection demo -->
+        <figure class="demo" aria-label="Demonstration of ciphertext being decrypted into readable code in the browser">
+          <div class="demo-chrome">
+            <div class="demo-dots"><span></span><span></span><span></span></div>
+            <div class="demo-file"><span class="demo-path">acme/payments-core</span> / <span class="demo-name">src/app.enc.ts</span></div>
+            <button id="demo-toggle" class="demo-toggle" type="button" aria-pressed="false">
+              <span class="demo-toggle-icon" aria-hidden="true">🔓</span>
+              <span class="demo-toggle-label">Locked</span>
+            </button>
+          </div>
+          <div id="code" class="demo-code" role="img" aria-label="A source file shown as encrypted ciphertext, then decrypted into readable TypeScript with verified-block shields">
+            <!-- rows injected by demo.js -->
+          </div>
+          <figcaption class="demo-caption">
+            <span id="demo-status">Ciphertext on the server — what GitHub actually stores.</span>
+            <span class="demo-note">Illustrative demo · no real keys or cryptography run in this page.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================ PROBLEM ============================ -->
+    <section class="section" id="problem">
+      <div class="container">
+        <h2 class="section-title">The impossible choice in modern Git security</h2>
+        <p class="section-lead">
+          Every character your team pushes to a cloud remote becomes a centralized attack surface.
+          Today you get to pick your poison.
+        </p>
+        <div class="grid grid-3 reveal-group">
+          <article class="card">
+            <div class="card-icon">🏚️</div>
+            <h3>Self-hosting is an ops nightmare</h3>
+            <p>Running internal GitLab instances, air-gapped nodes and VPNs drains engineering
+              hours and budget — just to avoid trusting a cloud you already pay for.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🧨</div>
+            <h3>Standard encryption breaks teamwork</h3>
+            <p>Tools like <code>git-crypt</code> and SOPS turn the web UI into unreadable hex.
+              Change one character and the whole block shifts — killing line-by-line PR diffs.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">☁️</div>
+            <h3>The cloud is one breach away</h3>
+            <p>If your provider — or a single developer's personal account — is compromised, your
+              entire proprietary codebase is exfiltrated in one command.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ HOW IT WORKS ============================ -->
+    <section class="section section-alt" id="how">
+      <div class="container">
+        <h2 class="section-title">A cryptographic source map — like minification, for secrets</h2>
+        <p class="section-lead">
+          SupersCrypt splits <strong>storage</strong> from <strong>visibility</strong>. Code is
+          chunked into logical blocks, each independently encrypted with authenticated AES-GCM. A
+          tiny, encrypted manifest maps ciphertext offsets back to real line ranges — so only the
+          blocks that actually changed change.
+        </p>
+
+        <ol class="flow reveal-group" aria-label="Data flow">
+          <li class="flow-step">
+            <span class="flow-num">1</span>
+            <h3>Write locally</h3>
+            <p><code>src/app.ts</code> stays plaintext on your machine only — git-ignored, never
+              pushed.</p>
+          </li>
+          <li class="flow-arrow" aria-hidden="true">→</li>
+          <li class="flow-step">
+            <span class="flow-num">2</span>
+            <h3>Encrypt on commit</h3>
+            <p>A pre-commit hook chunks &amp; AES-GCM-encrypts each block, emitting
+              <code>app.enc.ts</code> + <code>app.enc.map</code>.</p>
+          </li>
+          <li class="flow-arrow" aria-hidden="true">→</li>
+          <li class="flow-step">
+            <span class="flow-num">3</span>
+            <h3>Push pure noise</h3>
+            <p>GitHub, GitLab &amp; Bitbucket store only structure-anonymized ciphertext rows.</p>
+          </li>
+          <li class="flow-arrow" aria-hidden="true">→</li>
+          <li class="flow-step">
+            <span class="flow-num">4</span>
+            <h3>Inject cleartext</h3>
+            <p>The isolated extension decrypts in volatile RAM and paints readable code onto the
+              page — lazily, only for the lines in your viewport.</p>
+          </li>
+        </ol>
+
+        <div class="grid grid-3 reveal-group how-pillars">
+          <article class="card">
+            <h3>🧩 Surgical block cryptography</h3>
+            <p>Functional scopes encrypt independently, so pull-request reviews keep their exact
+              green/red line diffs. Only modified blocks move.</p>
+          </article>
+          <article class="card">
+            <h3>🔒 Keys in an isolated vault</h3>
+            <p>Decryption happens exclusively inside a Manifest V3 background service worker.
+              Plaintext never enters the page's JavaScript context — immune to XSS scraping.</p>
+          </article>
+          <article class="card">
+            <h3>⚡ Lazy viewport rendering</h3>
+            <p>The extension reads the manifest and decrypts only the visible rows as you scroll.
+              Even 10,000-line files stay smooth — no main-thread freeze.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ COMPARISON ============================ -->
+    <section class="section" id="compare">
+      <div class="container">
+        <h2 class="section-title">Why teams choose SupersCrypt</h2>
+        <p class="section-lead">
+          Plenty of tools encrypt files on the remote. None of them keep the collaboration layer
+          alive on the web.
+        </p>
+        <div class="table-wrap reveal">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th scope="col">Capability</th>
+                <th scope="col">git-crypt / SOPS</th>
+                <th scope="col">Keybase / git-cr</th>
+                <th scope="col" class="col-us">SupersCrypt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Web UI inspection</th>
+                <td class="neg">❌ Broken — raw hex blobs</td>
+                <td class="neg">❌ Can't view files on the web</td>
+                <td class="pos">🟢 Seamless visual layer</td>
+              </tr>
+              <tr>
+                <th scope="row">Pull-request diffs</th>
+                <td class="neg">❌ One change rewrites the block</td>
+                <td class="neg">❌ Provider can't parse the repo</td>
+                <td class="pos">🟢 Fully supported via source maps</td>
+              </tr>
+              <tr>
+                <th scope="row">Key infrastructure</th>
+                <td class="neg">❌ Manual, static shared keys</td>
+                <td class="neg">❌ Per-user, no central control</td>
+                <td class="pos">🟢 SSO identity gating (Okta / Azure)</td>
+              </tr>
+              <tr>
+                <th scope="row">Platform coverage</th>
+                <td class="neg">Repo-side only</td>
+                <td class="neg">Keybase-hosted only</td>
+                <td class="pos">🟢 GitHub · GitLab · Bitbucket</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="aside">
+          Think of it as <strong>Virtru for source code</strong> — the proven "encrypted storage +
+          browser injection" model that already powers hundreds of millions in enterprise email
+          security, brought to the repositories your engineers live in.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================ VISION ============================ -->
+    <section class="section section-alt" id="vision">
+      <div class="container">
+        <h2 class="section-title">From secure Git to computing on data you can't see</h2>
+        <p class="section-lead">
+          Code is just highly structured text. The same client-side injection architecture layers
+          over <em>any</em> regulated data stream — and scales toward the holy grail of privacy
+          engineering.
+        </p>
+        <div class="grid grid-3 tiers reveal-group">
+          <article class="card tier">
+            <span class="tier-tag">Tier 1 · Today</span>
+            <h3>Version control &amp; IP protection</h3>
+            <p>Secure proprietary codebases and structural secrets on public Git remotes without
+              breaking web-based pull-request review workflows.</p>
+          </article>
+          <article class="card tier">
+            <span class="tier-tag">Tier 2 · Next</span>
+            <h3>Drop-in compliance data masking</h3>
+            <p>Mask regulated fields — PII, PHI, financial records — dynamically inside standard
+              dashboards and partner portals. Unauthorized views stay scrambled in the DOM.</p>
+          </article>
+          <article class="card tier">
+            <span class="tier-tag">Tier 3 · The horizon</span>
+            <h3>Homomorphic &amp; zero-knowledge queries</h3>
+            <p>Private Set Intersection and OPRF let a partner verify whether an entry exists in
+              your dataset — <strong>without either side revealing anything</strong>. The client-side
+              viewfinder for computing on ciphertext.</p>
+          </article>
+        </div>
+        <blockquote class="pull-quote reveal">
+          Advanced multi-party cryptography fails in the enterprise because it lacks a usable
+          interface. SupersCrypt <em>is</em> that interface — scrambled inputs go in, remote servers
+          compute on ciphertext, and authorized results render right in the browser.
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ============================ ENTERPRISE ============================ -->
+    <section class="section" id="enterprise">
+      <div class="container">
+        <h2 class="section-title">The enterprise control plane</h2>
+        <p class="section-lead">
+          The open-core engine builds trust. The governance layer is where CISOs stop worrying —
+          centralized, auditable, and wired into the identity stack you already run.
+        </p>
+        <div class="grid grid-2 reveal-group">
+          <article class="card feature-row">
+            <div class="card-icon">🔑</div>
+            <div>
+              <h3>Centralized key orchestration &amp; SSO</h3>
+              <p>Provision, rotate and revoke repository keys through Okta, Azure AD or Ping.
+                Offboard someone in your IdP and their access vanishes everywhere — instantly.</p>
+            </div>
+          </article>
+          <article class="card feature-row">
+            <div class="card-icon">🎚️</div>
+            <div>
+              <h3>Block-level RBAC</h3>
+              <p>Senior engineers decrypt the payment handlers; contractors browsing the same file
+                see only ciphertext. Access is gated per block, per identity.</p>
+            </div>
+          </article>
+          <article class="card feature-row">
+            <div class="card-icon">📊</div>
+            <div>
+              <h3>Tamper-resistant audit trails</h3>
+              <p>Every decryption — who, which block, when, from where — streams straight into
+                Splunk or Datadog to satisfy SOC 2, HIPAA and ISO 27001 auditors.</p>
+            </div>
+          </article>
+          <article class="card feature-row">
+            <div class="card-icon">📈</div>
+            <div>
+              <h3>Dynamic DOM defense</h3>
+              <p>We track and adapt to shifting provider interfaces 24/7 — the "AdBlock moat" — so
+                your team gets uninterrupted uptime across every remote as their UIs change.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ VERTICALS ============================ -->
+    <section class="section section-alt" id="verticals">
+      <div class="container">
+        <h2 class="section-title">Built for the highest-stakes data</h2>
+        <div class="grid grid-4 reveal-group">
+          <article class="card mini">
+            <div class="card-icon">🏦</div>
+            <h3>Fintech &amp; AML</h3>
+            <p>Check a new customer against a partner's sanctions list without sharing your
+              onboarding data or exposing the watchlist.</p>
+          </article>
+          <article class="card mini">
+            <div class="card-icon">🧬</div>
+            <h3>Healthcare</h3>
+            <p>Verify a patient's enrollment in a clinical trial without violating HIPAA or
+              exposing proprietary patient databases.</p>
+          </article>
+          <article class="card mini">
+            <div class="card-icon">🔩</div>
+            <h3>Supply chain &amp; KYC</h3>
+            <p>Cross-reference vendor part numbers against active compliance registries — right
+              inside the browser, no bulk data transfer.</p>
+          </article>
+          <article class="card mini">
+            <div class="card-icon">🛰️</div>
+            <h3>Defense &amp; IP</h3>
+            <p>Give global contractors access to exactly the directories they need — and nothing
+              else — on standard public remotes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ MOAT / OPEN-CORE ============================ -->
+    <section class="section" id="moat">
+      <div class="container narrow">
+        <h2 class="section-title">Open where it must be. Defensible where it counts.</h2>
+        <div class="grid grid-2 reveal-group moat-grid">
+          <div class="moat-copy">
+            <h3>The AdBlock moat</h3>
+            <p>Keeping an injection engine working across GitHub, GitLab and Bitbucket as their
+              React trees mutate is a relentless cat-and-mouse grind — the same reason no giant has
+              casually cloned AdBlock. Enterprises pay us to absorb that maintenance so their
+              workflows never break. And GitHub will never build this: it would only work on
+              GitHub, and enterprises hate lock-in. Our neutrality is the product.</p>
+          </div>
+          <div class="moat-copy">
+            <h3>Open-core by design</h3>
+            <p>Security teams won't run a black box near their code. So the client-side injection
+              engine and decryption mechanics are open-source and auditable (AGPLv3); the local
+              source-map parsers are permissive (MIT/Apache). The centralized KMS, SSO, RBAC and
+              compliance control plane is the commercial layer.</p>
+            <ul class="license-list">
+              <li><span class="lic lic-agpl">AGPLv3</span> Core browser extension</li>
+              <li><span class="lic lic-mit">MIT / Apache 2.0</span> Local source-map parsers</li>
+              <li><span class="lic lic-pro">Commercial</span> Enterprise control plane</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ CISO FAQ ============================ -->
+    <section class="section section-alt" id="faq">
+      <div class="container narrow">
+        <h2 class="section-title">Straight answers for security leaders</h2>
+        <div class="faq reveal-group">
+          <details class="faq-item">
+            <summary>"Browser extensions expand our attack surface via XSS."</summary>
+            <p>SupersCrypt runs on Manifest V3. Decryption happens exclusively in an isolated
+              background service worker — plaintext and keys never touch the web page's global
+              JavaScript context, making it immune to page-level XSS scraping. For enterprise
+              clients we deliver signed build artifacts you deploy internally via Jamf, Intune or
+              Google Admin, not the public store.</p>
+          </details>
+          <details class="faq-item">
+            <summary>"Decrypting code in the browser will make large files lag."</summary>
+            <p>That was our hardest engineering problem. Because the pre-commit hook pre-chunks and
+              indexes every file, the extension acts like a minification source map: it reads a
+              compact manifest, finds the line ranges currently in the viewport, and lazily decrypts
+              only those DOM nodes as you scroll. Memory footprint stays negligible even on massive
+              files.</p>
+          </details>
+          <details class="faq-item">
+            <summary>"If an endpoint is compromised, can't an attacker just read the screen?"</summary>
+            <p>Correct — screen-scraping malware on an endpoint is a job for your EDR (CrowdStrike,
+              etc.). SupersCrypt neutralizes a different, higher-consequence vector: centralized
+              cloud breaches. Steal a GitHub token today and you get 100% of the IP. With
+              SupersCrypt you get unreadable noise — an attacker would have to breach machines one
+              by one, eliminating the single catastrophic leak.</p>
+          </details>
+          <details class="faq-item">
+            <summary>"Who manages key rotation when an engineer leaves?"</summary>
+            <p>You don't hand-track keys. SupersCrypt integrates with your IdP via SAML/OIDC. When
+              an authorized engineer opens a repo, the extension validates their identity and
+              requests a short-lived, in-memory decryption token. Deactivate them in Okta or Azure
+              AD and their access to both the web UI and any local clone vanishes instantly. Master
+              keys stay governed in your existing enterprise KMS.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ PILOT CTA ============================ -->
+    <section class="section cta-section" id="pilot">
+      <div class="container narrow">
+        <div class="cta-card reveal">
+          <h2>Request early access to the enterprise pilot</h2>
+          <p>Opening initial slots for teams managing remote global contractors, defense and
+            fintech workloads, or strict SOC 2 / HIPAA requirements. Tell us where you host and
+            what keeps you up at night.</p>
+
+          <!-- TODO: paste your Formspree / Formspark / Netlify Forms endpoint into `action` and
+               remove data-demo to send real submissions. -->
+          <form id="pilot-form" class="pilot-form" action="#" method="POST" data-demo="true" novalidate>
+            <label class="visually-hidden" for="email">Work email</label>
+            <div class="input-row">
+              <input id="email" type="email" name="email" placeholder="you@company.com"
+                autocomplete="email" required />
+              <button class="btn btn-primary" type="submit">Join the pilot</button>
+            </div>
+            <p id="form-msg" class="form-msg" role="status" aria-live="polite"></p>
+          </form>
+          <p class="cta-fineprint">No spam. We reply personally — usually within a day.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <svg class="logo-mark" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path fill="var(--accent-blue)" d="M12 1 3 5v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V5l-9-4Z" />
+          <path fill="var(--bg-dark)" d="m10.6 15.4-3-3 1.4-1.4 1.6 1.6 3.9-3.9L16 6.2l-5.4 9.2Z" />
+        </svg>
+        <span>Supers<span class="logo-accent">Crypt</span></span>
+      </div>
+      <p class="footer-tag">Zero-Knowledge collaboration for the clouds you already use. Open-Core Platform.</p>
+      <p class="footer-legal">
+        © 2026 SupersCrypt. Concept &amp; positioning site. Architecture, tiers and capabilities
+        described here are product vision — not audited metrics or third-party endorsements.
+      </p>
+    </div>
+  </footer>
+
+  <script src="demo.js" defer></script>
+</body>
+</html>

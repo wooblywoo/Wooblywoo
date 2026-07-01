@@ -1,0 +1,7 @@
+# Original saved conversation used to generate the site — not part of the website
+GitCrypt*.html
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
