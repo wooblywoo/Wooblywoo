@@ -1,5 +1,5 @@
 /* =====================================================================
-   SupersCrypt — hero injection demo + page interactions
+   Wooblywoo — hero injection demo + page interactions
    Vanilla JS, no dependencies. Pure presentation: no real cryptography.
    ===================================================================== */
 (function () {
@@ -13,7 +13,7 @@
         `shield` marks a verified-block boundary (function / class start).
      ----------------------------------------------------------------- */
   var LINES = [
-    { html: '<span class="tok-com">// @enc-block · SupersCrypt v1</span>', shield: false },
+    { html: '<span class="tok-com">// @enc-block · Wooblywoo v1</span>', shield: false },
     { html: '<span class="tok-key">function</span> <span class="tok-fn">validateSession</span><span class="tok-punc">(</span><span class="tok-var">user</span><span class="tok-punc">) {</span>', shield: true },
     { html: '  <span class="tok-key">const</span> token <span class="tok-punc">=</span> user<span class="tok-punc">.</span>session<span class="tok-punc">.</span>jwt', shield: false },
     { html: '  <span class="tok-key">if</span> <span class="tok-punc">(!</span><span class="tok-fn">verify</span><span class="tok-punc">(</span>token<span class="tok-punc">,</span> vaultKey<span class="tok-punc">)) {</span>', shield: false },
