@@ -95,10 +95,7 @@
     nav.addEventListener("click", function (e) { if (e.target.tagName === "A") { nav.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); } });
   }
 
-  /* ---------- 4. Contact form → posts to Touchpoints.app ---------- */
-  function ok(msg, form) { msg.textContent = "✅ Thanks — we'll be in touch shortly."; msg.className = "form-msg ok"; form.reset(); }
-  function fail(msg) { msg.textContent = "Something went wrong — email hello@wooblywoo.example instead."; msg.className = "form-msg err"; }
-
+  /* ---------- 4. Contact form → posts to Touchpoints.app JSON API ---------- */
   function initForm() {
     var form = document.getElementById("pilot-form"); if (!form) return;
     if (form.getAttribute("data-touchpoint") !== "true") return;
@@ -108,16 +105,32 @@
       e.preventDefault();
       var valid = input && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((input.value || "").trim());
       if (!valid) { msg.textContent = "Please enter a valid work email."; msg.className = "form-msg err"; if (input) input.focus(); return; }
+
+      var submission = {};
+      form.querySelectorAll("input[name^='question_']").forEach(function (el) {
+        if (el.value.trim()) submission[el.name] = el.value.trim();
+      });
+
       if (btn) btn.disabled = true;
       msg.textContent = "Sending…"; msg.className = "form-msg";
-      var body = new FormData(form);
-
-      fetch(form.action, { method: "POST", body: body })
-        .then(function (res) { if (res.ok) { ok(msg, form); } else { fail(msg); } })
+      fetch(form.action, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({ submission: submission })
+      })
+        .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+        .then(function (r) {
+          if (r.ok && r.data.status === "success") {
+            msg.textContent = "✅ Thanks — we'll be in touch shortly."; msg.className = "form-msg ok"; form.reset();
+          } else {
+            var errs = r.data && r.data.errors;
+            msg.textContent = errs ? Object.keys(errs).map(function (k) { return errs[k]; }).join(" ")
+                                   : ((r.data && r.data.message) || "Submission failed.");
+            msg.className = "form-msg err";
+          }
+        })
         .catch(function () {
-          return fetch(form.action, { method: "POST", mode: "no-cors", body: body })
-            .then(function () { ok(msg, form); })
-            .catch(function () { fail(msg); });
+          msg.textContent = "Something went wrong — please try again."; msg.className = "form-msg err";
         })
         .then(function () { if (btn) btn.disabled = false; });
     });
