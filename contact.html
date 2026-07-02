@@ -40,31 +40,19 @@
     <section class="section">
       <div class="container narrow">
         <div class="form-panel reveal">
-          <!--
-            TOUCHPOINTS INLINE EMBED — to go live:
-              1) Replace REPLACE-WITH-YOUR-TOUCHPOINTS-FORM-ID with your form's UUID.
-              2) Uncomment the two <script> tags below.
-              3) (Optional) delete the fallback <form> that follows.
-            Docs/spec: https://touchpoints.app/llms.txt
-          -->
-          <div id="my-form-container"></div>
-          <!--
-          <script src="https://touchpoints.app/assets/js/touchpoints_widget.js"></script>
-          <script>
-            TouchpointsWidget.init({
-              formId: 'REPLACE-WITH-YOUR-TOUCHPOINTS-FORM-ID',
-              baseUrl: 'https://touchpoints.app',
-              type: 'inline',
-              container: '#my-form-container'
-            });
-          </script>
-          -->
+          <form id="pilot-form" class="form-fallback" method="POST" data-touchpoint="true"
+            action="https://touchpoints.app/touchpoints/35c55700-eea5-415b-82a6-b6c010bdafac/submit" novalidate>
+            <input type="text" name="website" id="website" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-          <!-- Fallback form — works today; remove once the Touchpoints embed above is live. -->
-          <form id="pilot-form" class="form-fallback" action="#" method="POST" data-demo="true" novalidate>
             <label class="visually-hidden" for="email">Work email</label>
+            <input id="email" type="email" name="submission[question_174]" placeholder="you@company.com" autocomplete="email" required />
+
+            <label class="visually-hidden" for="name">Name</label>
+            <input id="name" type="text" name="submission[question_175]" placeholder="Your name (optional)" autocomplete="name" />
+
             <div class="input-row">
-              <input id="email" type="email" name="email" placeholder="you@company.com" autocomplete="email" required />
+              <label class="visually-hidden" for="linkedin">LinkedIn</label>
+              <input id="linkedin" type="url" name="submission[question_176]" placeholder="LinkedIn URL (optional)" autocomplete="url" />
               <button class="btn btn-primary" type="submit">Request access</button>
             </div>
             <p id="form-msg" class="form-msg" role="status" aria-live="polite"></p>
