@@ -95,16 +95,31 @@
     nav.addEventListener("click", function (e) { if (e.target.tagName === "A") { nav.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); } });
   }
 
-  /* ---------- 4. Fallback contact form (used until the Touchpoints embed is live) ---------- */
+  /* ---------- 4. Contact form → posts to Touchpoints.app ---------- */
+  function ok(msg, form) { msg.textContent = "✅ Thanks — we'll be in touch shortly."; msg.className = "form-msg ok"; form.reset(); }
+  function fail(msg) { msg.textContent = "Something went wrong — email hello@wooblywoo.example instead."; msg.className = "form-msg err"; }
+
   function initForm() {
     var form = document.getElementById("pilot-form"); if (!form) return;
+    if (form.getAttribute("data-touchpoint") !== "true") return;
     var msg = document.getElementById("form-msg"), input = form.querySelector('input[type="email"]');
+    var btn = form.querySelector('button[type="submit"]');
     form.addEventListener("submit", function (e) {
-      if (form.getAttribute("data-demo") !== "true") return;
       e.preventDefault();
       var valid = input && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((input.value || "").trim());
       if (!valid) { msg.textContent = "Please enter a valid work email."; msg.className = "form-msg err"; if (input) input.focus(); return; }
-      msg.textContent = "✅ Thanks — we'll be in touch shortly."; msg.className = "form-msg ok"; form.reset();
+      if (btn) btn.disabled = true;
+      msg.textContent = "Sending…"; msg.className = "form-msg";
+      var body = new FormData(form);
+
+      fetch(form.action, { method: "POST", body: body })
+        .then(function (res) { if (res.ok) { ok(msg, form); } else { fail(msg); } })
+        .catch(function () {
+          return fetch(form.action, { method: "POST", mode: "no-cors", body: body })
+            .then(function () { ok(msg, form); })
+            .catch(function () { fail(msg); });
+        })
+        .then(function () { if (btn) btn.disabled = false; });
     });
   }
 
