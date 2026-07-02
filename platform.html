@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Platform — How Wooblywoo works</title>
+  <meta name="description" content="How Wooblywoo works: encrypt before data leaves your control, store only ciphertext, grant access on-demand, and reveal it client-side to authorized parties with a full audit trail." />
+  <meta name="color-scheme" content="dark" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%234c7dff' d='M12 1 3 5v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V5l-9-4Z'/%3E%3Cpath fill='%230b1220' d='m10.6 15.4-3-3 1.4-1.4 1.6 1.6 3.9-3.9L16 6.2l-5.4 9.2Z'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="Wooblywoo home">
+        <svg class="logo-mark" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="var(--accent)" d="M12 1 3 5v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V5l-9-4Z" /><path fill="var(--bg)" d="m10.6 15.4-3-3 1.4-1.4 1.6 1.6 3.9-3.9L16 6.2l-5.4 9.2Z" /></svg>
+        <span>Woobly<span class="logo-accent">woo</span></span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+        <a href="platform.html" class="active" aria-current="page">Platform</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="security.html">Security</a>
+        <a class="btn btn-primary btn-sm" href="contact.html">Request access</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">The platform</span>
+        <h1>Split <span class="grad">storage</span> from <span class="grad">visibility</span></h1>
+        <p>Wooblywoo encrypts every asset before it leaves your control, then reveals it — client-side, on-demand — only to the exact parties you authorize. Your systems, your cloud and your counterparties' systems store nothing but unreadable ciphertext.</p>
+      </div>
+    </section>
+
+    <!-- FLOW -->
+    <section class="section">
+      <div class="container">
+        <ol class="flow reveal-group" aria-label="How it works">
+          <li class="flow-step"><span class="flow-num">1</span><h3>Encrypt at the edge</h3><p>Documents, database fields and code are encrypted with authenticated AES-GCM on your side, before upload.</p></li>
+          <li class="flow-arrow" aria-hidden="true">→</li>
+          <li class="flow-step"><span class="flow-num">2</span><h3>Store only ciphertext</h3><p>Your cloud, SaaS portals and Git remotes hold structure-anonymized noise — nothing readable, ever.</p></li>
+          <li class="flow-arrow" aria-hidden="true">→</li>
+          <li class="flow-step"><span class="flow-num">3</span><h3>Grant on-demand</h3><p>Authorize a person, team or counterparty — scoped, time-boxed and identity-gated through your IdP.</p></li>
+          <li class="flow-arrow" aria-hidden="true">→</li>
+          <li class="flow-step"><span class="flow-num">4</span><h3>Reveal &amp; audit</h3><p>Authorized viewers see the real thing rendered live in their browser; every view is logged to your SIEM.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- DEMO -->
+    <section class="section section-alt">
+      <div class="container narrow">
+        <h2 class="section-title">Ciphertext on the server. The real thing on screen.</h2>
+        <p class="section-lead">A shared claims record as your host stores it — then as an authorized reinsurer sees it. Same mechanism for a contract PDF, a PII table, or a source file.</p>
+        <figure class="demo reveal" aria-label="A shared claims record shown as ciphertext, then decrypted in the browser for an authorized viewer">
+          <div class="demo-chrome">
+            <div class="demo-dots"><span></span><span></span><span></span></div>
+            <div class="demo-file"><span class="demo-path">data-room</span> / <span class="demo-name">claims/PLC-4471.enc</span></div>
+            <button id="demo-toggle" class="demo-toggle" type="button" aria-pressed="false"><span class="demo-toggle-icon" aria-hidden="true">🔓</span><span class="demo-toggle-label">Locked</span></button>
+          </div>
+          <div id="code" class="demo-code" role="img" aria-label="A claims record shown as encrypted ciphertext, then decrypted into readable fields"></div>
+          <figcaption class="demo-caption">
+            <span id="demo-status">Ciphertext at rest — what your servers and cloud actually store.</span>
+            <span class="demo-note">Illustrative demo · no real keys or cryptography run in this page.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ASSETS -->
+    <section class="section" id="assets">
+      <div class="container">
+        <h2 class="section-title">What you can share</h2>
+        <p class="section-lead">One consistent security model across every asset type your teams exchange.</p>
+        <div class="grid grid-3 reveal-group">
+          <article class="card pillar">
+            <span class="tag">Documents</span>
+            <h3>Files &amp; data rooms</h3>
+            <p>PDFs, spreadsheets, board packs, diligence rooms. Rendered in-browser for authorized readers; downloads stay encrypted and revocable.</p>
+          </article>
+          <article class="card pillar">
+            <span class="tag">Databases</span>
+            <h3>Tables &amp; exports</h3>
+            <p>Encrypt regulated columns (PII/PHI, financials) field-by-field. Analysts and partners see only the fields their role permits.</p>
+          </article>
+          <article class="card pillar">
+            <span class="tag">Code</span>
+            <h3>Repositories</h3>
+            <p>Keep source zero-knowledge on GitHub/GitLab/Bitbucket. Pull-request diffs and reviews keep working via an encrypted source map.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Why not just email it, or use a VDR?</h2>
+        <div class="table-wrap reveal">
+          <table class="compare">
+            <thead>
+              <tr><th scope="col">Capability</th><th scope="col">Email / file shares</th><th scope="col">Traditional VDRs</th><th scope="col" class="col-us">Wooblywoo</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Data readable on the host</th><td class="neg">Yes — plaintext at rest</td><td class="neg">Yes — vendor can read it</td><td class="pos">🟢 Never — ciphertext only</td></tr>
+              <tr><th scope="row">Revoke after it's downloaded</th><td class="neg">Impossible</td><td class="neg">Only the copy on their server</td><td class="pos">🟢 Instant, everywhere</td></tr>
+              <tr><th scope="row">Field / block-level access</th><td class="neg">All-or-nothing</td><td class="neg">File-level at best</td><td class="pos">🟢 Down to the field</td></tr>
+              <tr><th scope="row">Works in tools they already use</th><td class="neg">New attachments to manage</td><td class="neg">Separate portal to adopt</td><td class="pos">🟢 Renders in the browser</td></tr>
+              <tr><th scope="row">Provable audit trail</th><td class="neg">None</td><td class="neg">Vendor-controlled logs</td><td class="pos">🟢 Streams to your SIEM</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="pull-quote reveal">Advanced cryptography stalls in the enterprise because it lacks a usable interface. Wooblywoo <em>is</em> that interface — encrypted inputs go in, and authorized results render right where your teams already work.</p>
+      </div>
+    </section>
+
+    <section class="section cta-section">
+      <div class="container narrow"><div class="cta-card reveal">
+        <h2>Put it in front of your data</h2>
+        <p>We'll scope a pilot to a real sharing workflow — a data room, a counterparty exchange, or a cross-departmental hand-off.</p>
+        <a class="btn btn-primary" href="contact.html">Request access</a>
+      </div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand"><svg class="logo-mark" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="var(--accent)" d="M12 1 3 5v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V5l-9-4Z" /><path fill="var(--bg)" d="m10.6 15.4-3-3 1.4-1.4 1.6 1.6 3.9-3.9L16 6.2l-5.4 9.2Z" /></svg><span>Woobly<span class="logo-accent">woo</span></span></div>
+          <p>Compliant, on-demand secure sharing for regulated enterprises — documents, databases and code.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col"><h5>Platform</h5><a href="platform.html">How it works</a><a href="platform.html#assets">What you can share</a><a href="security.html">Security</a></div>
+          <div class="footer-col"><h5>Solutions</h5><a href="solutions.html#insurance">Insurance</a><a href="solutions.html#finance">Finance</a><a href="solutions.html#consulting">Consulting</a></div>
+          <div class="footer-col"><h5>Company</h5><a href="contact.html">Request access</a><a href="security.html#faq">CISO FAQ</a></div>
+        </div>
+      </div>
+      <p class="footer-legal">© 2026 Wooblywoo. Concept &amp; positioning site. Architecture, capabilities and compliance alignments described here are product vision — illustrative, not audited certifications, customer endorsements, or legal advice. Brand logos shown are placeholders.</p>
+    </div>
+  </footer>
+
+  <script src="site.js" defer></script>
+</body>
+</html>

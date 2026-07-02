@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request access | Wooblywoo</title>
+  <meta name="description" content="Request access to a scoped Wooblywoo pilot for your insurance, finance or consulting team." />
+  <meta name="color-scheme" content="dark" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%234c7dff' d='M12 1 3 5v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V5l-9-4Z'/%3E%3Cpath fill='%230b1220' d='m10.6 15.4-3-3 1.4-1.4 1.6 1.6 3.9-3.9L16 6.2l-5.4 9.2Z'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="Wooblywoo home">
+        <svg class="logo-mark" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="var(--accent)" d="M12 1 3 5v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V5l-9-4Z" /><path fill="var(--bg)" d="m10.6 15.4-3-3 1.4-1.4 1.6 1.6 3.9-3.9L16 6.2l-5.4 9.2Z" /></svg>
+        <span>Woobly<span class="logo-accent">woo</span></span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+        <a href="platform.html">Platform</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="security.html">Security</a>
+        <a class="btn btn-primary btn-sm" href="contact.html" aria-current="page">Request access</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Request access</span>
+        <h1>Start a <span class="grad">scoped pilot</span></h1>
+        <p>Tell us what you need to share and with whom — a data room, a counterparty exchange, a cross-departmental hand-off. We'll set up a controlled pilot for your team and walk your security leads through the architecture.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow">
+        <div class="form-panel reveal">
+          <!--
+            TOUCHPOINTS INLINE EMBED — to go live:
+              1) Replace REPLACE-WITH-YOUR-TOUCHPOINTS-FORM-ID with your form's UUID.
+              2) Uncomment the two <script> tags below.
+              3) (Optional) delete the fallback <form> that follows.
+            Docs/spec: https://touchpoints.app/llms.txt
+          -->
+          <div id="my-form-container"></div>
+          <!--
+          <script src="https://touchpoints.app/assets/js/touchpoints_widget.js"></script>
+          <script>
+            TouchpointsWidget.init({
+              formId: 'REPLACE-WITH-YOUR-TOUCHPOINTS-FORM-ID',
+              baseUrl: 'https://touchpoints.app',
+              type: 'inline',
+              container: '#my-form-container'
+            });
+          </script>
+          -->
+
+          <!-- Fallback form — works today; remove once the Touchpoints embed above is live. -->
+          <form id="pilot-form" class="form-fallback" action="#" method="POST" data-demo="true" novalidate>
+            <label class="visually-hidden" for="email">Work email</label>
+            <div class="input-row">
+              <input id="email" type="email" name="email" placeholder="you@company.com" autocomplete="email" required />
+              <button class="btn btn-primary" type="submit">Request access</button>
+            </div>
+            <p id="form-msg" class="form-msg" role="status" aria-live="polite"></p>
+          </form>
+          <p class="cta-fineprint">We reply personally — usually within a business day. Prefer email? Reach the team at <a href="mailto:hello@wooblywoo.example">hello@wooblywoo.example</a>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand"><svg class="logo-mark" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="var(--accent)" d="M12 1 3 5v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V5l-9-4Z" /><path fill="var(--bg)" d="m10.6 15.4-3-3 1.4-1.4 1.6 1.6 3.9-3.9L16 6.2l-5.4 9.2Z" /></svg><span>Woobly<span class="logo-accent">woo</span></span></div>
+          <p>Compliant, on-demand secure sharing for regulated enterprises — documents, databases and code.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col"><h5>Platform</h5><a href="platform.html">How it works</a><a href="platform.html#assets">What you can share</a><a href="security.html">Security</a></div>
+          <div class="footer-col"><h5>Solutions</h5><a href="solutions.html#insurance">Insurance</a><a href="solutions.html#finance">Finance</a><a href="solutions.html#consulting">Consulting</a></div>
+          <div class="footer-col"><h5>Company</h5><a href="contact.html">Request access</a><a href="security.html#faq">CISO FAQ</a></div>
+        </div>
+      </div>
+      <p class="footer-legal">© 2026 Wooblywoo. Concept &amp; positioning site. Architecture, capabilities and compliance alignments described here are product vision — illustrative, not audited certifications, customer endorsements, or legal advice. Brand logos shown are placeholders.</p>
+    </div>
+  </footer>
+
+  <script src="site.js" defer></script>
+</body>
+</html>
